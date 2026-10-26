@@ -1,0 +1,27 @@
+{
+  "channels": [
+    {
+      "id": "daserste",
+      "publicationService": { "name": "Das Erste" },
+      "timeSlots": [
+        [
+          { "title": "Tagesschau", "broadcastedOn": "2026-10-25T19:00:00Z",
+            "links": { "target": { "urlId": "Y3JpZDovL3RhZ2Vzc2NoYXUuZGUvMTIz" } } },
+          { "title": "Tatort", "broadcastedOn": "2026-10-25T19:15:00Z",
+            "links": { "target": { "urlId": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3RhdG9ydC80NTY" } } },
+          { "title": "Wetter", "broadcastedOn": "2026-10-25T20:45:00Z" }
+        ]
+      ]
+    },
+    {
+      "id": "wdr",
+      "publicationService": { "name": "WDR" },
+      "timeSlots": [
+        [
+          { "title": "Lokalzeit", "urlId": "Y3JpZDovL3dkci5kZS83ODk" },
+          { "title": "Tatort (Wiederholung)", "links": { "target": { "urlId": "Y3JpZDovL2Rhc2Vyc3RlLmRlL3RhdG9ydC80NTY" } } }
+        ]
+      ]
+    }
+  ]
+}

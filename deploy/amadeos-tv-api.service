@@ -1,0 +1,19 @@
+# The API. Install the jar as /opt/amadeos-tv-api/amadeos-tv-api.jar and the settings as
+# /etc/amadeos-tv-api/application.yml (database password; see README).
+[Unit]
+Description=amadeOS TV API
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+User=tvapi
+WorkingDirectory=/opt/amadeos-tv-api
+ExecStart=/usr/bin/java -Xmx256m -jar /opt/amadeos-tv-api/amadeos-tv-api.jar --spring.config.additional-location=/etc/amadeos-tv-api/
+Restart=on-failure
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+{
+  "attributes": { "duration": { "value": 5280000 }, "geoLocation": { "value": "dach" } },
+  "priorityList": [
+    { "formitaeten": [
+      { "mimeType": "video/mp4", "qualities": [
+        { "quality": "hd", "highestVerticalResolution": 720, "audio": { "tracks": [
+          { "class": "main", "language": "deu", "uri": "https://zdf.example/duo/dgs-720.mp4" } ] } },
+        { "quality": "high", "highestVerticalResolution": 360, "audio": { "tracks": [
+          { "class": "main", "language": "deu", "uri": "https://zdf.example/duo/dgs-360.mp4" } ] } } ] } ] }
+  ]
+}

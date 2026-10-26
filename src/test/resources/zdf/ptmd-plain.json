@@ -1,0 +1,9 @@
+{
+  "attributes": { "duration": { "value": 2640000 }, "geoLocation": { "value": "none" } },
+  "priorityList": [
+    { "formitaeten": [
+      { "mimeType": "video/mp4", "qualities": [
+        { "quality": "veryhigh", "highestVerticalResolution": 540, "audio": { "tracks": [
+          { "class": "main", "language": "deu", "uri": "https://zdf.example/ostsee/540.mp4" } ] } } ] } ] }
+  ]
+}

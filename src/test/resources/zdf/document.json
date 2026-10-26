@@ -1,0 +1,24 @@
+{
+  "id": "das-duo-tod-am-deich-100",
+  "title": "Das Duo",
+  "subtitle": "Tod am Deich",
+  "editorialDate": "2026-10-24T10:00:00.000+02:00",
+  "leadParagraph": "Ein Frachter läuft ein, und an Bord fehlt der Kapitän. ",
+  "tvService": "ZDFneo",
+  "http://zdf.de/rels/brand": { "title": "Das Duo" },
+  "http://zdf.de/rels/category": { "title": "Filme" },
+  "http://zdf.de/rels/sharing-url": "https://www.zdf.de/filme/das-duo/das-duo-tod-am-deich-100.html",
+  "programmeItem": [ { "http://zdf.de/rels/target": {
+      "title": "Das Duo",
+      "episodeNumber": 5,
+      "http://zdf.de/rels/cmdm/season": { "seasonNumber": 2 },
+      "http://zdf.de/rels/cmdm/broadcasts": [ { "airtimeBegin": "2026-10-25T20:15:00+01:00" } ] } } ],
+  "mainVideoContent": { "http://zdf.de/rels/target": {
+      "duration": 5280,
+      "visibleTo": "2026-11-24T23:59:00.000+01:00",
+      "streams": {
+        "default": { "label": "Normal",
+          "http://zdf.de/rels/streams/ptmd-template": "/tmd/2/{playerId}/vod/ptmd/mediathek/261025_duo_neo/3" },
+        "dgs": { "label": "DGS",
+          "http://zdf.de/rels/streams/ptmd-template": "/tmd/2/{playerId}/vod/ptmd/mediathek/261025_duo_neo_dgs/1" } } } }
+}

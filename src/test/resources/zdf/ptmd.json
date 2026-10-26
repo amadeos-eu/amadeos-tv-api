@@ -1,0 +1,31 @@
+{
+  "attributes": { "duration": { "value": 5280000 }, "geoLocation": { "value": "dach" } },
+  "captions": [
+    { "language": "deu", "format": "ebu-tt-d-basic-de", "uri": "https://utstreaming.zdf.de/duo/sub.xml" },
+    { "language": "deu", "format": "webvtt", "uri": "https://utstreaming.zdf.de/duo/sub.vtt" }
+  ],
+  "priorityList": [
+    { "formitaeten": [
+      { "mimeType": "application/x-mpegURL", "qualities": [
+        { "quality": "auto", "highestVerticalResolution": 1080, "audio": { "tracks": [
+          { "class": "main", "language": "deu", "uri": "https://zdf.example/duo/master.m3u8" },
+          { "class": "ad", "language": "deu", "uri": "https://zdf.example/duo/master-ad.m3u8" } ] } } ] },
+      { "mimeType": "video/webm", "qualities": [
+        { "quality": "fhd", "highestVerticalResolution": 1080, "audio": { "tracks": [
+          { "class": "main", "language": "deu", "uri": "https://zdf.example/duo/1080.webm" } ] } } ] },
+      { "mimeType": "video/mp4", "qualities": [
+        { "quality": "uhd", "highestVerticalResolution": 2160, "audio": { "tracks": [
+          { "class": "main", "language": "deu", "uri": "https://zdf.example/duo/2160.mp4" } ] } },
+        { "quality": "fhd", "highestVerticalResolution": 1080, "audio": { "tracks": [
+          { "class": "main", "language": "deu", "uri": "https://zdf.example/duo/1080.mp4" },
+          { "class": "main", "language": "eng", "uri": "https://zdf.example/duo/1080-eng.mp4" } ] } },
+        { "quality": "hd", "highestVerticalResolution": 720, "audio": { "tracks": [
+          { "class": "main", "language": "deu", "uri": "https://zdf.example/duo/720.mp4" },
+          { "class": "ad", "language": "deu", "uri": "https://zdf.example/duo/720-ad.mp4" } ] } },
+        { "quality": "veryhigh", "audio": { "tracks": [
+          { "class": "main", "language": "deu", "uri": "https://zdf.example/duo/540.mp4" },
+          { "class": "ad", "language": "deu", "uri": "https://zdf.example/duo/540-ad.mp4" } ] } },
+        { "quality": "low", "audio": { "tracks": [
+          { "class": "main", "language": "deu", "uri": "https://zdf.example/duo/270.mp4" } ] } } ] } ] }
+  ]
+}

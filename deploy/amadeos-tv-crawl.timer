@@ -1,0 +1,12 @@
+# Every hour, a few minutes after the full hour, with some random delay so that not every
+# installation asks the broadcasters at the same second.
+[Unit]
+Description=amadeOS TV API: crawl every hour
+
+[Timer]
+OnCalendar=*-*-* *:07:00
+RandomizedDelaySec=5min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

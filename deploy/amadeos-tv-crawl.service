@@ -1,0 +1,17 @@
+# One run of the crawler, started by amadeos-tv-crawl.timer. It ends with exit code 1 when a source
+# failed, so the run shows up in `systemctl --failed` and in the journal.
+[Unit]
+Description=amadeOS TV API: crawl the media libraries
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=tvapi
+WorkingDirectory=/opt/amadeos-tv-api
+ExecStart=/usr/bin/java -Xmx384m -jar /opt/amadeos-tv-api/amadeos-tv-api.jar --spring.config.additional-location=/etc/amadeos-tv-api/ --spring.profiles.active=crawler
+TimeoutStartSec=2h
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
