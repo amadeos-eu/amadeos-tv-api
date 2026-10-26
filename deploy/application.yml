@@ -1,0 +1,8 @@
+# /etc/amadeos-tv-api/application.yml: what differs on the server. Readable only by root and tvapi.
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tvapi
+    username: tvapi
+    password: change-me
+crawl:
+  sources: ard

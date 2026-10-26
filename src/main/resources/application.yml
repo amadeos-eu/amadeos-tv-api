@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: amadeos-tv-api
+  datasource:
+    url: ${TVAPI_DB_URL:jdbc:postgresql://localhost:5432/tvapi}
+    username: ${TVAPI_DB_USER:tvapi}
+    password: ${TVAPI_DB_PASSWORD:}
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  port: 8085
+  # nginx in front passes X-Forwarded-*.
+  forward-headers-strategy: native
+
+crawl:
+  # The sources the crawler asks, by id.
+  sources: ard
+  # Today and the days before it.
+  days: 3
+  # Pause between two requests to the same host.
+  pause: 300ms
+  # A film the crawler saw this recently is not asked for again.
+  refresh-after: 24h
+  timeout: 20s

@@ -1,0 +1,59 @@
+{
+  "widgets": [
+    {
+      "title": "Tod am Deich",
+      "synopsis": "Ein Frachter läuft ein, und an Bord fehlt der Kapitän.",
+      "broadcastedOn": "2026-10-25T19:15:00Z",
+      "availableTo": "2026-11-24T22:59:00Z",
+      "show": { "title": "Tatort" },
+      "publicationService": { "name": "Das Erste", "partner": "daserste" },
+      "mediaCollection": {
+        "embedded": {
+          "meta": { "durationSeconds": 5310 },
+          "isGeoBlocked": true,
+          "streams": [
+            {
+              "kind": "main",
+              "media": [
+                { "mimeType": "application/vnd.apple.mpegurl", "maxHResolutionPx": 1080,
+                  "url": "https://example.ard.de/tatort/master.m3u8",
+                  "audios": [ { "kind": "standard", "languageCode": "deu" } ] },
+                { "mimeType": "video/mp4", "maxHResolutionPx": 360,
+                  "url": "https://example.ard.de/tatort/360.mp4",
+                  "audios": [ { "kind": "standard", "languageCode": "deu" } ] },
+                { "mimeType": "video/mp4", "maxHResolutionPx": 540,
+                  "url": "https://example.ard.de/tatort/540.mp4",
+                  "audios": [ { "kind": "standard", "languageCode": "deu" } ] },
+                { "mimeType": "video/mp4", "maxHResolutionPx": 720,
+                  "url": "//example.ard.de/tatort/720.mp4",
+                  "audios": [ { "kind": "standard", "languageCode": "deu" } ] },
+                { "mimeType": "video/mp4", "maxHResolutionPx": 1080,
+                  "url": "https://example.ard.de/tatort/1080.mp4",
+                  "audios": [ { "kind": "standard", "languageCode": "deu" } ] },
+                { "mimeType": "video/mp4", "maxHResolutionPx": 1080,
+                  "url": "https://example.ard.de/tatort/1080-eng.mp4",
+                  "audios": [ { "kind": "standard", "languageCode": "eng" } ] },
+                { "mimeType": "video/mp4", "maxHResolutionPx": 720,
+                  "url": "https://example.ard.de/tatort/ad-720.mp4",
+                  "audios": [ { "kind": "audio-description", "languageCode": "deu" } ] }
+              ]
+            },
+            {
+              "kind": "sign-language",
+              "media": [
+                { "mimeType": "video/mp4", "maxHResolutionPx": 540,
+                  "url": "https://example.ard.de/tatort/dgs-540.mp4",
+                  "audios": [ { "kind": "standard", "languageCode": "deu" } ] }
+              ]
+            }
+          ],
+          "subtitles": [
+            { "sources": [
+                { "kind": "ebutt", "url": "https://example.ard.de/tatort/sub.xml" },
+                { "kind": "webvtt", "url": "https://example.ard.de/tatort/sub.vtt" } ] }
+          ]
+        }
+      }
+    }
+  ]
+}

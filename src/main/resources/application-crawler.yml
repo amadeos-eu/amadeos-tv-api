@@ -1,0 +1,4 @@
+# The crawler: one run, no web server; started by a systemd timer (see deploy/).
+spring:
+  main:
+    web-application-type: none
