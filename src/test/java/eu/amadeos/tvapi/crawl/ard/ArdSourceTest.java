@@ -19,7 +19,7 @@ class ArdSourceTest {
     final List<String> requests = new ArrayList<>();
 
     ArdSource source(String answer) {
-        return new ArdSource(url -> {
+        return new ArdSource((url, headers) -> {
             requests.add(url);
             return Fixtures.read(answer);
         }, JsonMapper.builder().build());
@@ -84,7 +84,7 @@ class ArdSourceTest {
 
     @Test
     void anAnswerThatIsNotJsonIsAnError() {
-        ArdSource source = new ArdSource(url -> "<html>maintenance</html>", JsonMapper.builder().build());
+        ArdSource source = new ArdSource((url, headers) -> "<html>maintenance</html>", JsonMapper.builder().build());
         assertThrows(IOException.class, () -> source.published(LocalDate.of(2026, 10, 25)));
     }
 }

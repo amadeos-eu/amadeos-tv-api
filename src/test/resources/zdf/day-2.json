@@ -1,0 +1,10 @@
+{
+  "http://zdf.de/rels/search/results": [
+    { "http://zdf.de/rels/target": {
+        "canonical": "/content/documents/das-duo-tod-am-deich-100.json",
+        "mainVideoContent": { "http://zdf.de/rels/target": { "duration": 5280 } } } },
+    { "http://zdf.de/rels/target": {
+        "canonical": "/content/documents/terra-x-die-ostsee-102.json",
+        "mainVideoContent": { "http://zdf.de/rels/target": { "duration": 2640 } } } }
+  ]
+}

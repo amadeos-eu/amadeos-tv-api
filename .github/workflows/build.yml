@@ -39,7 +39,7 @@ jobs:
           count=$(grep -ho 'tests="[0-9]*"' build/test-results/test/*.xml | grep -o '[0-9]*' | paste -sd+ | bc)
           skipped=$(grep -ho 'skipped="[0-9]*"' build/test-results/test/*.xml | grep -o '[0-9]*' | paste -sd+ | bc)
           echo "Tests run: $count, skipped: $skipped"
-          test "$count" -ge 15
+          test "$count" -ge 25
           test "$skipped" -eq 0
       - name: Package
         run: ./gradlew bootJar --no-daemon -PappVersion=${{ steps.version.outputs.version }}

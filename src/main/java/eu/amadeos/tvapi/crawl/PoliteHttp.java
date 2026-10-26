@@ -48,35 +48,35 @@ public class PoliteHttp implements Http {
     }
 
     @Override
-    public String get(String url) throws IOException {
+    public String get(String url, Map<String, String> headers) throws IOException {
         URI uri = URI.create(url);
         Object lock = hostLocks.computeIfAbsent(uri.getHost(), h -> new Object());
         synchronized (lock) {
-            HttpResponse<String> response = send(uri);
+            HttpResponse<String> response = send(uri, headers);
             if (response.statusCode() == 429 || response.statusCode() >= 500) {
                 LOG.info("{} answered {}, trying once more", uri.getHost(), response.statusCode());
                 sleep(pause.multipliedBy(10));
-                response = send(uri);
+                response = send(uri, headers);
             }
             if (response.statusCode() != 200) {
-                throw new IOException(url + ": HTTP " + response.statusCode());
+                throw new HttpStatusException(url, response.statusCode());
             }
             return response.body();
         }
     }
 
-    private HttpResponse<String> send(URI uri) throws IOException {
+    private HttpResponse<String> send(URI uri, Map<String, String> headers) throws IOException {
         Long last = lastRequest.get(uri.getHost());
         if (last != null) {
             long wait = pause.toNanos() - (System.nanoTime() - last);
             if (wait > 0) sleep(Duration.ofNanos(wait));
         }
-        HttpRequest request = HttpRequest.newBuilder(uri).timeout(timeout)
-                .header("User-Agent", userAgent)
-                .header("Accept", "application/json")
-                .GET().build();
+        HttpRequest.Builder request = HttpRequest.newBuilder(uri).timeout(timeout)
+                .setHeader("User-Agent", userAgent)
+                .setHeader("Accept", "application/json");
+        headers.forEach(request::setHeader);
         try {
-            return client.send(request, HttpResponse.BodyHandlers.ofString());
+            return client.send(request.GET().build(), HttpResponse.BodyHandlers.ofString());
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new IOException("Interrupted: " + uri, e);

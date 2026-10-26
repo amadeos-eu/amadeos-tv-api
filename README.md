@@ -6,7 +6,7 @@ and answers TV's searches. Only metadata and links are kept: every video stays o
 server, and nothing a broadcaster limits to a country is unlocked.
 
 Status: **first step.** ARD (Das Erste, the regional broadcasters, ONE, ARD-alpha, tagesschau24)
-is crawled. ZDF, the full catalogues and the Ansible role follow. The design is in
+and ZDF (ZDF, ZDFneo, ZDFinfo, ZDFtivi) are crawled. The full catalogues and the Ansible role follow. The design is in
 [docs/design.md](docs/design.md).
 
 ## One jar, two modes
@@ -34,6 +34,13 @@ A busy server (429, 5xx) is asked once more after a pause. Each run is noted in 
 | Source | Day list | Film |
 |--------|----------|------|
 | `ard` | `programm-api.ard.de/program/api/program?day=…` (the program service TV's guide uses too) | `api.ardmediathek.de/page-gateway/pages/ard/item/<id>`: MP4 in normal and HD quality, HLS, subtitles. Versions with audio description or sign language become films of their own |
+| `zdf` | `api.zdf.de/search/documents?hasVideo=true&types=page-video&from=…&to=…` (all its pages) | `api.zdf.de/content/documents/<id>.json`, then the "ptmd" answer it points to: MP4 up to 1080 lines, HLS, subtitles, audio description, and the sign-language version |
+
+ZDF's API wants the token zdf.de gives its own pages (`Api-Auth: Bearer …`). The crawler reads it from
+www.zdf.de at the start of a run, and again once when ZDF stops taking it. Should ZDF change its page so
+that no token is found, the ZDF run fails visibly; the tokens can then be set by hand in
+`crawl.zdf.search-token` and `crawl.zdf.video-token` until the source is fixed. 3sat, KiKA, phoenix and
+ARTE also show up in ZDF's search but are left out there: they come from ARD or get sources of their own.
 
 ## API
 

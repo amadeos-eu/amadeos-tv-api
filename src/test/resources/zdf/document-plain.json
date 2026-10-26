@@ -1,0 +1,8 @@
+{
+  "title": "Die Ostsee",
+  "teasertext": "Ein Meer im Wandel.",
+  "editorialDate": "2026-10-25T18:00:00.000+02:00",
+  "http://zdf.de/rels/category": { "title": "Terra X" },
+  "mainVideoContent": { "http://zdf.de/rels/target": {
+      "http://zdf.de/rels/streams/ptmd-template": "/tmd/2/{playerId}/vod/ptmd/mediathek/261025_ostsee" } }
+}

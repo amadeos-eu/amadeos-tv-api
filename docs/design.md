@@ -1,6 +1,6 @@
 # amadeos-tv-api: design draft
 
-Status: design of 2026-10-26; the first step (skeleton, ARD, search API) is built.
+Status: design of 2026-10-26; the first steps (skeleton, ARD, ZDF, search API) are built.
 
 ## Purpose
 
@@ -52,7 +52,7 @@ tried live on the server, because my sandbox cannot reach these hosts.
 | Source | Recent days | Full catalogue | Video links | Notes |
 |---|---|---|---|---|
 | **ARD** (Das Erste, the regional channels, ONE, alpha, tagesschau24, funk partly) | `programm-api.ard.de/program/api/program?day=…&channelIds=…&mode=channel`, the same API TV's guide already uses; items carry the Mediathek id | `api.ardmediathek.de/page-gateway/pages/<channel>/editorial/experiment-a-z`, then the compilation widgets | `api.ardmediathek.de/page-gateway/pages/ard/item/<id>` (MP4 in several qualities, HLS, subtitles) | no key |
-| **ZDF** (ZDF, ZDFneo, ZDFinfo, 3sat, KiKA, phoenix partly) | `api.zdf.de/search/documents?hasVideo=true&from=…&to=…&sortBy=date` | GraphQL `api.zdf.de/graphql` with persisted queries (fragile: the hashes change with ZDF's website) | `content/documents/<id>.json`, then the "ptmd" template | needs the `Api-Auth` token from the zdf.de page; TV already reads it for the guide |
+| **ZDF** (ZDF, ZDFneo, ZDFinfo, ZDFtivi) | `api.zdf.de/search/documents?hasVideo=true&from=…&to=…&sortBy=date` | GraphQL `api.zdf.de/graphql` with persisted queries (fragile: the hashes change with ZDF's website) | `content/documents/<id>.json`, then the "ptmd" template | needs the `Api-Auth` token from the zdf.de page; TV already reads it for the guide. 3sat, KiKA, phoenix and ARTE are left out here (ARD or own sources) |
 | **ARTE** | OPA v3 `api.arte.tv/api/opa/v3/videos?sort=-videoRightsBegin&language=de` | the same, paged | `OPA/v3/streams/<programId>/…` | needs a bearer token that is built into ARTE's own players. Only with ARTE's OK, so it comes in a later step |
 | later | ORF, SRF, DW, KiKA directly | | | each one separately, step by step |
 

@@ -1,0 +1,6 @@
+{
+  "title": "Kulturzeit",
+  "tvService": "3sat",
+  "mainVideoContent": { "http://zdf.de/rels/target": {
+      "http://zdf.de/rels/streams/ptmd-template": "/tmd/2/{playerId}/vod/ptmd/3sat/261025_kulturzeit" } }
+}

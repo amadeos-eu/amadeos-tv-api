@@ -1,0 +1,18 @@
+{
+  "totalResultsCount": 3,
+  "http://zdf.de/rels/search/results": [
+    { "http://zdf.de/rels/target": {
+        "id": "das-duo-tod-am-deich-100",
+        "canonical": "/content/documents/das-duo-tod-am-deich-100.json",
+        "mainVideoContent": { "http://zdf.de/rels/target": { "duration": 5280 } } } },
+    { "http://zdf.de/rels/target": {
+        "id": "ein-artikel-100",
+        "canonical": "/content/documents/ein-artikel-100.json" } },
+    { "http://zdf.de/rels/target": {
+        "canonical": "/content/documents/eine-teaserseite-100.json",
+        "http://zdf.de/rels/content/video-page-teaser": {
+          "canonical": "/content/documents/heute-journal-vom-25-oktober-2026-100.json",
+          "mainVideoContent": { "http://zdf.de/rels/target": { "duration": 1800 } } } } }
+  ],
+  "next": "/search/documents?hasVideo=true&q=*&types=3&sortOrder=desc&from=2026-10-25T00%3A00%3A00.000%2B02%3A00&page=2"
+}
