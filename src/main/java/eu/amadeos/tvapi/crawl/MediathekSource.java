@@ -1,6 +1,6 @@
 package eu.amadeos.tvapi.crawl;
 
-import eu.amadeos.tvapi.film.Film;
+import eu.amadeos.tvapi.model.Film;
 
 import java.io.IOException;
 import java.time.LocalDate;

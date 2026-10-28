@@ -1,6 +1,6 @@
-package eu.amadeos.tvapi.api;
+package eu.amadeos.tvapi.controller;
 
-import eu.amadeos.tvapi.film.Film;
+import eu.amadeos.tvapi.model.Film;
 
 import java.time.Instant;
 import java.util.UUID;

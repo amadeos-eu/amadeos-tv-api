@@ -1,10 +1,11 @@
-package eu.amadeos.tvapi.api;
+package eu.amadeos.tvapi.controller;
 
-import eu.amadeos.tvapi.crawl.CrawlRuns;
-import eu.amadeos.tvapi.film.ChannelCount;
-import eu.amadeos.tvapi.film.FilmPage;
-import eu.amadeos.tvapi.film.FilmQuery;
-import eu.amadeos.tvapi.film.FilmStore;
+import eu.amadeos.tvapi.model.ChannelCount;
+import eu.amadeos.tvapi.model.CrawlRun;
+import eu.amadeos.tvapi.model.FilmPage;
+import eu.amadeos.tvapi.model.FilmQuery;
+import eu.amadeos.tvapi.service.CrawlRunService;
+import eu.amadeos.tvapi.service.FilmService;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.http.CacheControl;
@@ -40,14 +41,14 @@ public class FilmController {
     }
 
     /** How the crawler is doing, per source. */
-    public record StatusJson(String version, long films, List<CrawlRuns.Run> sources) {
+    public record StatusJson(String version, long films, List<CrawlRun> sources) {
     }
 
-    private final FilmStore films;
-    private final CrawlRuns runs;
+    private final FilmService films;
+    private final CrawlRunService runs;
     private final String version;
 
-    public FilmController(FilmStore films, CrawlRuns runs, ObjectProvider<BuildProperties> build) {
+    public FilmController(FilmService films, CrawlRunService runs, ObjectProvider<BuildProperties> build) {
         this.films = films;
         this.runs = runs;
         this.version = build.stream().map(BuildProperties::getVersion).findFirst().orElse("dev");

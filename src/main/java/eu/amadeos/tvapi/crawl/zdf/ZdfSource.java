@@ -3,7 +3,7 @@ package eu.amadeos.tvapi.crawl.zdf;
 import eu.amadeos.tvapi.crawl.Http;
 import eu.amadeos.tvapi.crawl.HttpStatusException;
 import eu.amadeos.tvapi.crawl.MediathekSource;
-import eu.amadeos.tvapi.film.Film;
+import eu.amadeos.tvapi.model.Film;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

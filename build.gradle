@@ -1,3 +1,17 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // For generateJooq; the versions are those of Spring Boot (spring-boot-dependencies), so that the
+        // generated classes fit the jOOQ the program runs with.
+        classpath 'org.jooq:jooq-codegen:3.21.9'
+        classpath 'org.flywaydb:flyway-database-postgresql:12.4.0'
+        classpath 'org.postgresql:postgresql:42.7.14'
+        classpath 'org.testcontainers:testcontainers-postgresql:2.0.5'
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '4.1.2'
@@ -20,7 +34,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-jooq'
     implementation 'org.springframework.boot:spring-boot-starter-flyway'
     implementation 'org.flywaydb:flyway-database-postgresql'
     runtimeOnly 'org.postgresql:postgresql'
@@ -36,6 +50,54 @@ springBoot {
     // /tv/v1/status shows the version.
     buildInfo()
 }
+
+// The jOOQ classes of the tables (eu.amadeos.tvapi.repository.jooq). jOOQ reads the tables from a PostgreSQL
+// in a container after Flyway ran the migrations, so it sees them as the program does (H2 knows no tsvector
+// and no generated columns). Like the tests, it needs Docker; it runs again only when a migration changed.
+def migrations = file('src/main/resources/db/migration')
+def jooqSources = layout.buildDirectory.dir('generated-sources/jooq')
+
+def generateJooq = tasks.register('generateJooq') {
+    description = 'Generates the jOOQ classes from the Flyway migrations, in a PostgreSQL container.'
+    inputs.dir(migrations)
+    outputs.dir(jooqSources)
+    doLast {
+        def target = jooqSources.get().asFile
+        target.deleteDir()
+        def postgres = new org.testcontainers.postgresql.PostgreSQLContainer('postgres:17-alpine')
+        try {
+            postgres.start()
+            // The build script's class loader, so that Flyway finds its PostgreSQL support.
+            org.flywaydb.core.Flyway.configure(org.flywaydb.core.Flyway.classLoader)
+                    .dataSource(postgres.jdbcUrl, postgres.username, postgres.password)
+                    .locations("filesystem:${migrations}")
+                    .load().migrate()
+            org.jooq.codegen.GenerationTool.generate(new org.jooq.meta.jaxb.Configuration()
+                    .withJdbc(new org.jooq.meta.jaxb.Jdbc()
+                            .withDriver('org.postgresql.Driver')
+                            .withUrl(postgres.jdbcUrl).withUser(postgres.username).withPassword(postgres.password))
+                    .withGenerator(new org.jooq.meta.jaxb.Generator()
+                            .withDatabase(new org.jooq.meta.jaxb.Database()
+                                    .withName('org.jooq.meta.postgres.PostgresDatabase')
+                                    .withInputSchema('public')
+                                    .withExcludes('flyway_schema_history')
+                                    .withOutputSchemaToDefault(true)
+                                    // Times as Instant, as everywhere in the program.
+                                    .withForcedTypes(new org.jooq.meta.jaxb.ForcedType()
+                                            .withName('INSTANT')
+                                            .withIncludeTypes('timestamptz')))
+                            // film.search (tsvector) has no Java type; it is only used in SQL templates.
+                            .withGenerate(new org.jooq.meta.jaxb.Generate().withDeprecationOnUnknownTypes(false))
+                            .withTarget(new org.jooq.meta.jaxb.Target()
+                                    .withPackageName('eu.amadeos.tvapi.repository.jooq')
+                                    .withDirectory(target.path))))
+        } finally {
+            postgres.stop()
+        }
+    }
+}
+
+sourceSets.main.java.srcDir(generateJooq)
 
 tasks.named('test') {
     useJUnitPlatform()

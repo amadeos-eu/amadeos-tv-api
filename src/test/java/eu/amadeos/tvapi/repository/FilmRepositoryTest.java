@@ -1,6 +1,11 @@
-package eu.amadeos.tvapi.film;
+package eu.amadeos.tvapi.repository;
 
 import eu.amadeos.tvapi.DatabaseTest;
+import eu.amadeos.tvapi.model.ChannelCount;
+import eu.amadeos.tvapi.model.Film;
+import eu.amadeos.tvapi.model.FilmPage;
+import eu.amadeos.tvapi.model.FilmQuery;
+import eu.amadeos.tvapi.model.Saved;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,11 +17,11 @@ import java.util.Set;
 import static eu.amadeos.tvapi.Fixtures.film;
 import static org.junit.jupiter.api.Assertions.*;
 
-class FilmStoreTest extends DatabaseTest {
+class FilmRepositoryTest extends DatabaseTest {
     static final Instant T = Instant.parse("2026-10-25T20:00:00Z");
 
     @Autowired
-    FilmStore store;
+    FilmRepository store;
 
     void fill() {
         store.save(film("a", "Das Erste", "Tatort", "Tod am Deich", "Ein Frachter läuft in den Hafen ein.",
@@ -28,8 +33,8 @@ class FilmStoreTest extends DatabaseTest {
 
     @Test
     void savingAgainUpdates() {
-        assertEquals(FilmStore.Saved.NEW, store.save(film("a", "Das Erste", "Tatort", "Alt", "", T, 90), T));
-        assertEquals(FilmStore.Saved.UPDATED, store.save(film("a", "Das Erste", "Tatort", "Neu", "", T, 90),
+        assertEquals(Saved.NEW, store.save(film("a", "Das Erste", "Tatort", "Alt", "", T, 90), T));
+        assertEquals(Saved.UPDATED, store.save(film("a", "Das Erste", "Tatort", "Neu", "", T, 90),
                 T.plusSeconds(60)));
         FilmPage all = store.search(FilmQuery.all());
         assertEquals(1, all.total());

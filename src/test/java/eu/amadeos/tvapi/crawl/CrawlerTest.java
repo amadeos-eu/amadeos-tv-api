@@ -1,9 +1,11 @@
 package eu.amadeos.tvapi.crawl;
 
 import eu.amadeos.tvapi.DatabaseTest;
-import eu.amadeos.tvapi.film.Film;
-import eu.amadeos.tvapi.film.FilmQuery;
-import eu.amadeos.tvapi.film.FilmStore;
+import eu.amadeos.tvapi.model.CrawlRun;
+import eu.amadeos.tvapi.model.Film;
+import eu.amadeos.tvapi.model.FilmQuery;
+import eu.amadeos.tvapi.service.CrawlRunService;
+import eu.amadeos.tvapi.service.FilmService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,9 +26,9 @@ class CrawlerTest extends DatabaseTest {
     static final Instant NOW = Instant.parse("2026-10-25T21:30:00Z");
 
     @Autowired
-    FilmStore films;
+    FilmService films;
     @Autowired
-    CrawlRuns runs;
+    CrawlRunService runs;
 
     /** The 25th has a, b and c (c without video), every other day a again and d, which fails. */
     static final class FakeSource implements MediathekSource {
@@ -66,7 +68,7 @@ class CrawlerTest extends DatabaseTest {
         assertTrue(crawler.crawl(source));
         assertEquals(List.of("a", "b", "c", "d"), source.asked);
         assertEquals(2, films.search(FilmQuery.all()).total());
-        CrawlRuns.Run run = runs.latest().getFirst();
+        CrawlRun run = runs.latest().getFirst();
         assertEquals(2, run.filmsNew());
         assertNull(run.error());
 

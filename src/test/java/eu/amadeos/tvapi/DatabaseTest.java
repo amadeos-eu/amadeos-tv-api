@@ -1,10 +1,13 @@
 package eu.amadeos.tvapi;
 
+import org.jooq.DSLContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.jdbc.core.simple.JdbcClient;
+
+import static eu.amadeos.tvapi.repository.jooq.Tables.CRAWL_RUN;
+import static eu.amadeos.tvapi.repository.jooq.Tables.FILM;
 
 /**
  * Base of the tests with the database: the whole program with a web server on a free port and PostgreSQL
@@ -14,10 +17,10 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 @Import(TestDatabase.class)
 public abstract class DatabaseTest {
     @Autowired
-    protected JdbcClient jdbc;
+    protected DSLContext dsl;
 
     @BeforeEach
     void emptyTables() {
-        jdbc.sql("truncate film, crawl_run").update();
+        dsl.truncate(FILM, CRAWL_RUN).execute();
     }
 }
