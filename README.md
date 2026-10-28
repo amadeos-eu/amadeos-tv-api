@@ -5,9 +5,10 @@ collects the on-demand films of the German public broadcasters' media libraries 
 and answers TV's searches. Only metadata and links are kept: every video stays on the broadcaster's
 server, and nothing a broadcaster limits to a country is unlocked.
 
-Status: **first step.** ARD (Das Erste, the regional broadcasters, ONE, ARD-alpha, tagesschau24)
-and ZDF (ZDF, ZDFneo, ZDFinfo, ZDFtivi) are crawled. The full catalogues and the Ansible role follow. The design is in
-[docs/design.md](docs/design.md).
+Status: **v1.0.0 runs on api.amadeos.eu for testing.** ARD (Das Erste, the regional broadcasters,
+ONE, ARD-alpha, tagesschau24) and ZDF (ZDF, ZDFneo, ZDFinfo, ZDFtivi) are crawled; ZDF delivers no
+films at the moment, and both sources still have to move to the broadcasters' registered APIs. Next
+steps are in [ROADMAP.md](ROADMAP.md), the design in [docs/design.md](docs/design.md).
 
 ## One jar, two modes
 
