@@ -2,7 +2,7 @@ package eu.amadeos.tvapi.crawl.ard;
 
 import eu.amadeos.tvapi.crawl.Http;
 import eu.amadeos.tvapi.crawl.MediathekSource;
-import eu.amadeos.tvapi.film.Film;
+import eu.amadeos.tvapi.model.Film;
 import org.springframework.stereotype.Component;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.JsonNode;

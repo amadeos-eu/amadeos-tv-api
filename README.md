@@ -74,7 +74,12 @@ A film:
 
 ## Building and testing
 
-Requirements: Java 25 JDK, and Docker for the tests (Testcontainers starts PostgreSQL 17).
+Requirements: Java 25 JDK, and Docker (Testcontainers starts PostgreSQL 17) for the tests and for the
+build itself: the jOOQ classes of the tables are generated from a database that Flyway created from
+`src/main/resources/db/migration` (`./gradlew generateJooq`, which runs again only when a migration changed).
+
+The code is layered: `controller` (REST API), `service`, `repository` (jOOQ, with the generated classes in
+`repository.jooq`) and `model` (the records they pass along); `crawl` holds the crawler and its sources.
 
 ```bash
 ./gradlew test       # unit tests and database tests; nothing goes online

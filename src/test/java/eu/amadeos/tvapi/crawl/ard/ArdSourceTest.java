@@ -1,7 +1,7 @@
 package eu.amadeos.tvapi.crawl.ard;
 
 import eu.amadeos.tvapi.Fixtures;
-import eu.amadeos.tvapi.film.Film;
+import eu.amadeos.tvapi.model.Film;
 import org.junit.jupiter.api.Test;
 import tools.jackson.databind.json.JsonMapper;
 

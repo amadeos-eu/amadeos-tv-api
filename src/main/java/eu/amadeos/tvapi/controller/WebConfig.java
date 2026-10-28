@@ -1,4 +1,4 @@
-package eu.amadeos.tvapi.api;
+package eu.amadeos.tvapi.controller;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

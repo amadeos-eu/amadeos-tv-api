@@ -1,7 +1,9 @@
 package eu.amadeos.tvapi.crawl;
 
-import eu.amadeos.tvapi.film.Film;
-import eu.amadeos.tvapi.film.FilmStore;
+import eu.amadeos.tvapi.model.Film;
+import eu.amadeos.tvapi.model.Saved;
+import eu.amadeos.tvapi.service.CrawlRunService;
+import eu.amadeos.tvapi.service.FilmService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
@@ -35,13 +37,13 @@ public class Crawler implements ApplicationRunner, ExitCodeGenerator {
     static final ZoneId BROADCAST_ZONE = ZoneId.of("Europe/Berlin");
 
     private final Map<String, MediathekSource> sources;
-    private final FilmStore films;
-    private final CrawlRuns runs;
+    private final FilmService films;
+    private final CrawlRunService runs;
     private final CrawlProperties properties;
     private final Clock clock;
     private int exitCode;
 
-    public Crawler(List<MediathekSource> sources, FilmStore films, CrawlRuns runs, CrawlProperties properties,
+    public Crawler(List<MediathekSource> sources, FilmService films, CrawlRunService runs, CrawlProperties properties,
                    Clock clock) {
         this.sources = sources.stream().collect(Collectors.toMap(MediathekSource::id, Function.identity()));
         this.films = films;
@@ -86,7 +88,7 @@ public class Crawler implements ApplicationRunner, ExitCodeGenerator {
                     try {
                         for (Film f : source.films(id)) {
                             if (!f.hasVideo()) continue;
-                            if (films.save(f, clock.instant()) == FilmStore.Saved.NEW) added++;
+                            if (films.save(f, clock.instant()) == Saved.NEW) added++;
                             else updated++;
                         }
                     } catch (IOException e) {

@@ -1,7 +1,7 @@
-package eu.amadeos.tvapi.api;
+package eu.amadeos.tvapi.controller;
 
 import eu.amadeos.tvapi.DatabaseTest;
-import eu.amadeos.tvapi.film.FilmStore;
+import eu.amadeos.tvapi.service.FilmService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +28,7 @@ class FilmApiTest extends DatabaseTest {
     @Value("${local.server.port}")
     int port;
     @Autowired
-    FilmStore films;
+    FilmService films;
 
     HttpResponse<String> get(String path, String... headers) throws IOException, InterruptedException {
         HttpRequest.Builder b = HttpRequest.newBuilder(URI.create("http://localhost:" + port + path));

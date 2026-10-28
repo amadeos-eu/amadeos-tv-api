@@ -65,7 +65,7 @@ Politeness rules, the same as in TV:
 
 ## Data
 
-PostgreSQL 16 or newer, Flyway migrations.
+PostgreSQL 16 or newer, Flyway migrations, queries with jOOQ (classes generated from the migrations).
 
 ```
 film(id uuid, source, channel, topic, title, description, published_at, duration_s,

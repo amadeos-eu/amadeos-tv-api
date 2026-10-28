@@ -1,6 +1,6 @@
 package eu.amadeos.tvapi;
 
-import eu.amadeos.tvapi.film.Film;
+import eu.amadeos.tvapi.model.Film;
 
 import java.io.IOException;
 import java.io.InputStream;

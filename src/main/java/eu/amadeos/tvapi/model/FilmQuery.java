@@ -1,4 +1,4 @@
-package eu.amadeos.tvapi.film;
+package eu.amadeos.tvapi.model;
 
 import java.time.Duration;
 import java.time.Instant;
