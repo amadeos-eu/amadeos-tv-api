@@ -19,7 +19,7 @@ plugins {
 }
 
 group = 'eu.amadeos'
-// The CI passes -PappVersion from the release branches (datazuul/amadeos-ci, version action).
+// The CI passes -PappVersion from the release branches (amadeos-eu/amadeos-ci, version action).
 version = findProperty('appVersion') ?: '0.0.0-dev.0'
 
 java {

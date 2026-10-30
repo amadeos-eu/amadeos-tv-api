@@ -1,6 +1,6 @@
 # amadeos-tv-api
 
-The service behind the Library page of [TV](https://github.com/datazuul/amade-tv) for amadeOS. It
+The service behind the Library page of [TV](https://github.com/amadeos-eu/amade-tv) for amadeOS. It
 collects the on-demand films of the German public broadcasters' media libraries once, for everyone,
 and answers TV's searches. Only metadata and links are kept: every video stays on the broadcaster's
 server, and nothing a broadcaster limits to a country is unlocked.
