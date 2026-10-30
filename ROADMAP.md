@@ -18,7 +18,7 @@ registration. Before amadeOS TV goes public, the sources move to the registered 
   links to ARD's videos, rate limits, attribution, private or commercial use.
 - [ ] **ZDF:** register at [developer.zdf.de](https://developer.zdf.de/), with the same questions.
 - [ ] Move `ArdSource` and `ZdfSource` to the official APIs. The keys go into
-  `/etc/amadeos-tv-api/application.yml`; the Ansible role in datazuul-devops keeps them in
+  `/etc/amadeos-tv-api/application.yml`; the Ansible role in amadeos-devops keeps them in
   `ansible/secrets/`, like the database password.
 - [ ] Note in the README and `docs/design.md` which terms apply to the data and the links.
 
@@ -59,7 +59,7 @@ Meanwhile `zdf` can be taken out of `amadeos_tv_api_sources` in the Ansible defa
 
 ### 2026-10-28: v1.0.0 live on api.amadeos.eu
 
-- Deployed with `deploy-api.amadeos.eu.yml` of datazuul-devops (PostgreSQL 17, Let's Encrypt, nginx,
+- Deployed with `deploy-api.amadeos.eu.yml` of amadeos-devops (PostgreSQL 17, Let's Encrypt, nginx,
   hourly `amadeos-tv-crawl.timer`).
 - First crawl: 3 days, 6 minutes, ARD 1084 films; ZDF none (see item 2). `/tv/v1/status` and the search
   checked in the browser.
