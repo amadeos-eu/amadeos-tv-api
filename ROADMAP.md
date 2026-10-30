@@ -64,10 +64,10 @@ Meanwhile `zdf` can be taken out of `amadeos_tv_api_sources` in the Ansible defa
 - First crawl: 3 days, 6 minutes, ARD 1084 films; ZDF none (see item 2). `/tv/v1/status` and the search
   checked in the browser.
 - jOOQ instead of JDBC, and the code layered into controller, service, repository and model
-  ([#3](https://github.com/datazuul/amadeos-tv-api/pull/3)).
+  ([#3](https://github.com/amadeos-eu/amadeos-tv-api/pull/3)).
 
 ### Before
 
 - The TV API with the ARD and ZDF Mediatheken: skeleton, both sources, search API, deploy files
-  ([#1](https://github.com/datazuul/amadeos-tv-api/pull/1)); separate nginx zones for the rate limit
-  and the cache ([#2](https://github.com/datazuul/amadeos-tv-api/pull/2)).
+  ([#1](https://github.com/amadeos-eu/amadeos-tv-api/pull/1)); separate nginx zones for the rate limit
+  and the cache ([#2](https://github.com/amadeos-eu/amadeos-tv-api/pull/2)).
